@@ -3,13 +3,17 @@ package com.lyx.procedure.service;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.core.util.URLUtil;
+import com.lyx.common.CommonResult;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.stereotype.Component;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component("service")
 public class Service
 {
     private static final List<String> TAG_NAME_LIST = CollUtil.newArrayList("h1", "h2", "h3", "h4", "h5", "h6", "p", "div");
@@ -20,12 +24,12 @@ public class Service
      * @param url 网页url
      * @return 文字
      */
-    public String getWebText(String url)
+    public CommonResult<String> getText(String url)
     {
         List<Element> eleOfHPD = this.getEleOfHPD(url);
         String htmlText = eleOfHPD.stream().map(Element::toString).collect(Collectors.joining());
 
-        return htmlText;
+        return CommonResult.successData(htmlText);
     }
 
     /**
