@@ -7,7 +7,7 @@ plugins
 
 group = 'lyx.com'
 version = '1.0'
-sourceCompatibility = '11'
+sourceCompatibility = '8'
 
 configurations
 {
